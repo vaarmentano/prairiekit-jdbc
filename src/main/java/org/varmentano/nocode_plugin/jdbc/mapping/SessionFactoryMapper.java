@@ -25,7 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Map;
 
-public class HibernateMapper {
+public class SessionFactoryMapper {
 
     public SessionFactoryBuilder mapToSessionFactoryBuilder(ObjectDefinition udoDef, DataSource dataSource, Map<String, Object> settings) {
         Document xmlDoc = mapUdoToHibernateMapping(udoDef);
@@ -41,6 +41,7 @@ public class HibernateMapper {
                 .build();
         return metadata.getSessionFactoryBuilder();
     }
+
     private Document mapUdoToHibernateMapping(ObjectDefinition udoDef) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -48,8 +49,8 @@ public class HibernateMapper {
             Document doc = docBuilder.newDocument();
             Element rootElement = doc.createElement("hibernate-mapping");
             Element classElement = doc.createElement("class");
-            classElement.setAttribute("entity-name", udoDef.getName());
-            udoDef.getFieldDefinitions().stream()
+            classElement.setAttribute("entity-name", udoDef.name());
+            udoDef.fieldDefinitions().stream()
                     .map(fieldDef -> this.mapFieldToElement(fieldDef, doc))
                     .forEach(classElement::appendChild);
             rootElement.appendChild(classElement);
@@ -62,14 +63,14 @@ public class HibernateMapper {
 
     private Element mapFieldToElement(FieldDefinition fieldDef, Document doc) {
         Element elem;
-        if (fieldDef.isId()) {
+        if (fieldDef.id()) {
             elem = doc.createElement("id");
         } else {
             elem = doc.createElement("property");
         }
-        elem.setAttribute("name", fieldDef.getName());
+        elem.setAttribute("name", fieldDef.name());
         elem.setAttribute("length", "255");
-        elem.setAttribute("type", fieldDef.getType());
+        elem.setAttribute("type", fieldDef.type());
         return elem;
     }
 

@@ -7,15 +7,13 @@ import org.varmentano.nocode_plugin.jdbc.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
 
 import javax.sql.DataSource;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UdoServiceTests {
@@ -24,10 +22,10 @@ public class UdoServiceTests {
 
     @BeforeAll
     static void setup() {
-        PGSimpleDataSource ds = new PGSimpleDataSource() ;
+        PGSimpleDataSource ds = new PGSimpleDataSource();
         ds.setServerNames(new String[]{"localhost"});
-        ds.setDatabaseName( "nocode_plugin" );
-        ds.setUser( "postgres" );
+        ds.setDatabaseName("nocode_plugin");
+        ds.setUser("postgres");
         dataSource = ds;
         clearTables();
 
@@ -48,12 +46,12 @@ public class UdoServiceTests {
         udoService.deployDefinition(myUdoDef);
 
         //Then
-        String query = "SELECT * \n" +
-        "FROM information_schema.tables " +
-                "LEFT JOIN information_schema.columns \n" +
-                    "ON information_schema.tables.table_name = information_schema.columns.table_name\n" +
-        "WHERE tables.table_schema = 'public'\n" +
-        "ORDER BY ordinal_position";
+        String query = """
+                SELECT *\s
+                FROM information_schema.tables LEFT JOIN information_schema.columns\s
+                ON information_schema.tables.table_name = information_schema.columns.table_name
+                WHERE tables.table_schema = 'public'
+                ORDER BY ordinal_position""";
         try {
             Connection connection = dataSource.getConnection();
             ResultSet rs = connection.prepareStatement(query).executeQuery();
@@ -93,7 +91,8 @@ public class UdoServiceTests {
         try {
             Connection connection = dataSource.getConnection();
             ResultSet rs = connection.prepareStatement(query).executeQuery();
-            assert(rs.next());
+            boolean hasNext = rs.next();
+            assert (hasNext);
             assertEquals(1, rs.getInt("id"));
             assertEquals(42, rs.getInt("age"));
             assertEquals("George", rs.getString("name"));
@@ -101,6 +100,27 @@ public class UdoServiceTests {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    @Order(3)
+    void queryById() {
+        //Given
+        List<FieldDefinition> fieldDefinitions = Arrays.asList(
+                new FieldDefinition("integer", "id", true),
+                new FieldDefinition("integer", "age"),
+                new FieldDefinition("string", "name"));
+        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+
+        //When
+        UserDefinedObject udo = udoService.getUdoById(myUdoDef, 1);
+
+        //Then
+        assertNotNull(udo);
+        assertEquals(1, udo.getData("id"));
+        assertEquals(42, udo.getData("age"));
+        assertEquals("George", udo.getData("name"));
+        assertNull(udo.getData("$type$"));
     }
 
     private static void clearTables() {

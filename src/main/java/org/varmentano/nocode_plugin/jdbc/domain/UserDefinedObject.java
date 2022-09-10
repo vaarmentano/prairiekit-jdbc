@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDefinedObject {
-    private ObjectDefinition schema;
-    private Map<String, Object> data = new HashMap<>();
+    private final ObjectDefinition schema;
+    private final Map<String, Object> data = new HashMap<>();
 
     public UserDefinedObject(ObjectDefinition def) {
         this.schema = def;
@@ -21,8 +21,7 @@ public class UserDefinedObject {
         return data.get(fieldKey);
     }
 
-    public UserDefinedObject putData(String fieldKey, Object value) {
+    public void putData(String fieldKey, Object value) {
         data.put(fieldKey, value);
-        return this;
     }
 }

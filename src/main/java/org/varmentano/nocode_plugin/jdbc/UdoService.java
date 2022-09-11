@@ -13,7 +13,11 @@ import org.varmentano.nocode_plugin.jdbc.mapping.SessionFactoryMapper;
 
 import javax.sql.DataSource;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class UdoService {
     private final DataSource dataSource;
@@ -39,28 +43,46 @@ public class UdoService {
     }
 
     public UserDefinedObject getUdoById(ObjectDefinition udoDef, int id) {
-        Map<String, Object> settings = Collections.singletonMap(AvailableSettings.DEFAULT_ENTITY_MODE, EntityMode.MAP.getExternalName());
-        SessionFactory sessionFactory = factoryMapper.mapToSessionFactoryBuilder(udoDef, dataSource, settings).build();
+        return performSessionAction(session -> {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> objectMap = (Map<String, Object>) session.get(udoDef.name(), id);
+            return entityMapper.mapToUdo(objectMap, udoDef);
+        }, udoDef);
+    }
 
-        Session session = sessionFactory.openSession();
-        @SuppressWarnings("unchecked")
-        Map<String, Object> objectMap = (Map<String, Object>) session.get(udoDef.name(), id);
-        UserDefinedObject udo = entityMapper.mapToUdo(objectMap, udoDef);
-        session.close();
-        return udo;
+    @SuppressWarnings("unchecked")
+    public List<UserDefinedObject> listUdos(ObjectDefinition udoDef) {
+        return performSessionAction(session -> session
+                .createQuery("from " + udoDef.name(), Object.class)
+                .getResultList().stream()
+                .map(obj -> (Map<String, Object>) obj)
+                .map(map -> entityMapper.mapToUdo(map, udoDef))
+                .collect(Collectors.toList()), udoDef);
     }
 
     public void saveNewUdo(UserDefinedObject myUdo) {
+        ObjectDefinition udoDef = myUdo.getDefinition();
+        performTransaction(session -> {
+            Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
+            session.save(myUdo.getDefinition().name(), mapObject);
+        }, udoDef);
+    }
+
+    private void performTransaction(Consumer<Session> action, ObjectDefinition udoDef) {
+        performSessionAction(session -> {
+            Transaction transaction = session.beginTransaction();
+            action.accept(session);
+            transaction.commit();
+            return null;
+        }, udoDef);
+    }
+
+    private <R> R performSessionAction(Function<Session, R> action, ObjectDefinition udoDef) {
         Map<String, Object> settings = Collections.singletonMap(AvailableSettings.DEFAULT_ENTITY_MODE, EntityMode.MAP.getExternalName());
-        SessionFactory sessionFactory =
-                factoryMapper.mapToSessionFactoryBuilder(myUdo.getDefinition(), dataSource, settings).build();
-
-        Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
-
+        SessionFactory sessionFactory = factoryMapper.mapToSessionFactoryBuilder(udoDef, dataSource, settings).build();
         Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(myUdo.getDefinition().name(), mapObject);
-        transaction.commit();
+        R result = action.apply(session);
         session.close();
+        return result;
     }
 }

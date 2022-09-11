@@ -123,6 +123,36 @@ public class UdoServiceTests {
         assertNull(udo.getData("$type$"));
     }
 
+    @Test
+    @Order(4)
+    void listAll() {
+        //Given
+        List<FieldDefinition> fieldDefinitions = Arrays.asList(
+                new FieldDefinition("integer", "id", true),
+                new FieldDefinition("integer", "age"),
+                new FieldDefinition("string", "name"));
+        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+        UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
+        myUdo.putData("id", 2);
+        myUdo.putData("age", 23);
+        myUdo.putData("name", "Roger");
+        udoService.saveNewUdo(myUdo);
+
+        //When
+        List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
+
+        //Then
+        assertEquals(2, udos.size());
+        UserDefinedObject udo = udos.get(0);
+        assertEquals(1, udo.getData("id"));
+        assertEquals(42, udo.getData("age"));
+        assertEquals("George", udo.getData("name"));
+        udo = udos.get(1);
+        assertEquals(2, udo.getData("id"));
+        assertEquals(23, udo.getData("age"));
+        assertEquals("Roger", udo.getData("name"));
+    }
+
     private static void clearTables() {
         try {
             Connection connection = dataSource.getConnection();

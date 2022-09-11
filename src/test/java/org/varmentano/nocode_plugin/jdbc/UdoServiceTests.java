@@ -19,6 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UdoServiceTests {
     private static DataSource dataSource;
     private static UdoService udoService;
+    private static final ObjectDefinition myUdoDef =
+            new ObjectDefinition("my_custom_object", Arrays.asList(
+                    new FieldDefinition("integer", "id", true),
+                    new FieldDefinition("integer", "age"),
+                    new FieldDefinition("string", "name"))
+            );
 
     @BeforeAll
     static void setup() {
@@ -35,12 +41,7 @@ public class UdoServiceTests {
     @Test
     @Order(1)
     void definitionDeployment() {
-        //Given
-        List<FieldDefinition> fieldDefinitions = Arrays.asList(
-                new FieldDefinition("integer", "id", true),
-                new FieldDefinition("integer", "age"),
-                new FieldDefinition("string", "name"));
-        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+        //Given myUdoDef
 
         //When
         udoService.deployDefinition(myUdoDef);
@@ -72,12 +73,7 @@ public class UdoServiceTests {
     @Test
     @Order(2)
     void saveNew() {
-        //Given
-        List<FieldDefinition> fieldDefinitions = Arrays.asList(
-                new FieldDefinition("integer", "id", true),
-                new FieldDefinition("integer", "age"),
-                new FieldDefinition("string", "name"));
-        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+        //Given myUdoDef
 
         //When
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
@@ -105,12 +101,7 @@ public class UdoServiceTests {
     @Test
     @Order(3)
     void queryById() {
-        //Given
-        List<FieldDefinition> fieldDefinitions = Arrays.asList(
-                new FieldDefinition("integer", "id", true),
-                new FieldDefinition("integer", "age"),
-                new FieldDefinition("string", "name"));
-        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+        //Given myUdoDef
 
         //When
         UserDefinedObject udo = udoService.getUdoById(myUdoDef, 1);
@@ -127,11 +118,6 @@ public class UdoServiceTests {
     @Order(4)
     void listAll() {
         //Given
-        List<FieldDefinition> fieldDefinitions = Arrays.asList(
-                new FieldDefinition("integer", "id", true),
-                new FieldDefinition("integer", "age"),
-                new FieldDefinition("string", "name"));
-        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
         myUdo.putData("id", 2);
         myUdo.putData("age", 23);
@@ -151,6 +137,32 @@ public class UdoServiceTests {
         assertEquals(2, udo.getData("id"));
         assertEquals(23, udo.getData("age"));
         assertEquals("Roger", udo.getData("name"));
+    }
+
+    @Test
+    @Order(5)
+    void updateField() {
+        //Given myUdoDef
+
+        //When
+        UserDefinedObject myUdo = udoService.getUdoById(myUdoDef, 1);
+        myUdo.putData("age", 43);
+        udoService.updateUdo(myUdo);
+
+        //Then
+        String query = "SELECT * FROM my_custom_object WHERE id = 1";
+        try {
+            Connection connection = dataSource.getConnection();
+            ResultSet rs = connection.prepareStatement(query).executeQuery();
+            boolean hasNext = rs.next();
+            assert (hasNext);
+            assertEquals(1, rs.getInt("id"));
+            assertEquals(43, rs.getInt("age"));
+            assertEquals("George", rs.getString("name"));
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void clearTables() {

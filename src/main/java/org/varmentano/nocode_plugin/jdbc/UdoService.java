@@ -68,6 +68,14 @@ public class UdoService {
         }, udoDef);
     }
 
+    public void updateUdo(UserDefinedObject myUdo) {
+        ObjectDefinition udoDef = myUdo.getDefinition();
+        performTransaction(session -> {
+            Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
+            session.update(myUdo.getDefinition().name(), mapObject);
+        }, udoDef);
+    }
+
     private void performTransaction(Consumer<Session> action, ObjectDefinition udoDef) {
         performSessionAction(session -> {
             Transaction transaction = session.beginTransaction();

@@ -13,6 +13,7 @@ import org.varmentano.nocode_plugin.jdbc.mapping.SessionFactoryMapper;
 
 import javax.sql.DataSource;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -73,6 +74,14 @@ public class UdoService {
         performTransaction(session -> {
             Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
             session.update(myUdo.getDefinition().name(), mapObject);
+        }, udoDef);
+    }
+
+    public void deleteUdo(ObjectDefinition udoDef, int id) {
+        performTransaction(session -> {
+            Map<String, Object> mapObject = new HashMap<>(1);
+            mapObject.put("id", id);
+            session.delete(udoDef.name(), mapObject);
         }, udoDef);
     }
 

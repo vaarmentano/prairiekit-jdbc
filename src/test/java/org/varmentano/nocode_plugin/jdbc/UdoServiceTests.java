@@ -165,6 +165,23 @@ public class UdoServiceTests {
         }
     }
 
+    @Test
+    @Order(6)
+    void deleteOne() {
+        //Given myUdoDef
+
+        //When
+        udoService.deleteUdo(myUdoDef, 2);
+
+        //Then
+        List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
+        assertEquals(1, udos.size());
+        UserDefinedObject udo = udos.get(0);
+        assertEquals(1, udo.getData("id"));
+        assertEquals("George", udo.getData("name"));
+    }
+
+
     private static void clearTables() {
         try {
             Connection connection = dataSource.getConnection();

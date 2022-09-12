@@ -1,4 +1,4 @@
-package org.varmentano.nocode_plugin.jdbc.domain.definition;
+package org.varmentano.nocode_plugin.domain.definition;
 
 import java.util.Collections;
 import java.util.List;

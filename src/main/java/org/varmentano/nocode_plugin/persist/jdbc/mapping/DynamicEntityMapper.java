@@ -1,7 +1,7 @@
-package org.varmentano.nocode_plugin.jdbc.mapping;
+package org.varmentano.nocode_plugin.persist.jdbc.mapping;
 
-import org.varmentano.nocode_plugin.jdbc.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.UserDefinedObject;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 
 import java.util.HashMap;
 import java.util.Map;

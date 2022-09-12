@@ -3,20 +3,20 @@ package org.varmentano.nocode_plugin.service;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface UdoService {
 
     UdoDefinitionService getDefinitionService();
 
-    UserDefinedObject getUdoById(ObjectDefinition udoDef, int id);
+    Optional<UserDefinedObject> findById(ObjectDefinition udoDef, int id);
 
-    List<UserDefinedObject> listUdos(ObjectDefinition udoDef);
+    Iterable<UserDefinedObject> findAll(ObjectDefinition udoDef);
 
-    void saveNewUdo(UserDefinedObject myUdo);
+    UserDefinedObject saveNew(UserDefinedObject myUdo);
 
-    void updateUdo(UserDefinedObject myUdo);
+    UserDefinedObject saveUpdate(UserDefinedObject myUdo);
 
-    void deleteUdo(ObjectDefinition udoDef, int id);
+    void deleteById(ObjectDefinition udoDef, int id);
 
 }

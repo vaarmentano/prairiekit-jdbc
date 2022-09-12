@@ -8,19 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoDefinitionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/docs/java/org.varmentano.nocode_plugin.jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/domain/UserDefinedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/domain/definition/FieldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/domain/definition/ObjectDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/ObjectDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/mapping/DynamicEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/jdbc/UdoServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +118,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2EXFCHYTNYqscf0C33LunFj3eYt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -145,7 +137,7 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "/Users/vincentarmentano/Development/nocode-plugin-jdbc/src/main/java/org/varmentano/nocode_plugin/service",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "actions.on.save"
+    "settings.editor.selected.configurable": "inlay.hints"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -163,13 +155,36 @@
       <recent name="org.varmentano.nocode_plugin.jdbc.mapping" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UdoServiceTestsJdbc">
+  <component name="RunManager" selected="Gradle.UdoServiceJdbcTests">
     <configuration name="Plugin Demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.varmentano.nocode_plugin.jdbc.Main" />
       <module name="nocode-plugin-jdbc.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="UdoServiceJdbcTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.varmentano.nocode_plugin.persist.jdbc.UdoServiceJdbcTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="UdoServiceTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -259,42 +274,21 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="nocode-plugin-jdbc [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.Plugin Demo" />
+      <item itemvalue="Gradle.UdoServiceJdbcTests" />
       <item itemvalue="Gradle.UdoServiceTestsJdbc" />
       <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
       <item itemvalue="Gradle.UdoServiceTests" />
       <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
-      <item itemvalue="Gradle.nocode-plugin-jdbc [test]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.UdoServiceJdbcTests" />
         <item itemvalue="Gradle.UdoServiceTestsJdbc" />
         <item itemvalue="Gradle.UdoServiceTests" />
         <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
         <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
-        <item itemvalue="Gradle.nocode-plugin-jdbc [test]" />
       </list>
     </recent_temporary>
   </component>
@@ -370,7 +364,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663000584741</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual">
+      <created>1663004895757</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1663004895757</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual">
+      <created>1663004976465</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1663004976465</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

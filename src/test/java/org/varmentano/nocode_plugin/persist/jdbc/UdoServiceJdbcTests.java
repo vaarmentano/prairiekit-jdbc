@@ -11,7 +11,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -80,9 +82,13 @@ public class UdoServiceJdbcTests {
         myUdo.putData("id", 1);
         myUdo.putData("age", 42);
         myUdo.putData("name", "George");
-        udoService.saveNewUdo(myUdo);
+        myUdo = udoService.saveNew(myUdo);
 
         //Then
+        assertNotNull(myUdo);
+        assertEquals(1, myUdo.getData("id"));
+        assertEquals(42, myUdo.getData("age"));
+        assertEquals("George", myUdo.getData("name"));
         String query = "SELECT * FROM my_custom_object";
         try {
             Connection connection = dataSource.getConnection();
@@ -104,9 +110,11 @@ public class UdoServiceJdbcTests {
         //Given myUdoDef
 
         //When
-        UserDefinedObject udo = udoService.getUdoById(myUdoDef, 1);
+        Optional<UserDefinedObject> opt = udoService.findById(myUdoDef, 1);
 
         //Then
+        assert (opt.isPresent());
+        UserDefinedObject udo = opt.get();
         assertNotNull(udo);
         assertEquals(1, udo.getData("id"));
         assertEquals(42, udo.getData("age"));
@@ -122,34 +130,37 @@ public class UdoServiceJdbcTests {
         myUdo.putData("id", 2);
         myUdo.putData("age", 23);
         myUdo.putData("name", "Roger");
-        udoService.saveNewUdo(myUdo);
+        udoService.saveNew(myUdo);
 
         //When
-        List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
+        Iterable<UserDefinedObject> udos = udoService.findAll(myUdoDef);
+        Iterator<UserDefinedObject> itr = udos.iterator();
 
         //Then
-        assertEquals(2, udos.size());
-        UserDefinedObject udo = udos.get(0);
+        UserDefinedObject udo = itr.next();
         assertEquals(1, udo.getData("id"));
         assertEquals(42, udo.getData("age"));
         assertEquals("George", udo.getData("name"));
-        udo = udos.get(1);
+        udo = itr.next();
         assertEquals(2, udo.getData("id"));
         assertEquals(23, udo.getData("age"));
         assertEquals("Roger", udo.getData("name"));
+        assertThrows(NoSuchElementException.class, itr::next);
     }
 
     @Test
     @Order(5)
     void updateField() {
         //Given myUdoDef
+        @SuppressWarnings("OptionalGetWithoutIsPresent")
+        UserDefinedObject myUdo = udoService.findById(myUdoDef, 1).get();
 
         //When
-        UserDefinedObject myUdo = udoService.getUdoById(myUdoDef, 1);
         myUdo.putData("age", 43);
-        udoService.updateUdo(myUdo);
+        myUdo = udoService.saveUpdate(myUdo);
 
         //Then
+        assertEquals(43, myUdo.getData("age"));
         String query = "SELECT * FROM my_custom_object WHERE id = 1";
         try {
             Connection connection = dataSource.getConnection();
@@ -171,14 +182,14 @@ public class UdoServiceJdbcTests {
         //Given myUdoDef
 
         //When
-        udoService.deleteUdo(myUdoDef, 2);
+        udoService.deleteById(myUdoDef, 2);
 
         //Then
-        List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
-        assertEquals(1, udos.size());
-        UserDefinedObject udo = udos.get(0);
+        Iterator<UserDefinedObject> itr = udoService.findAll(myUdoDef).iterator();
+        UserDefinedObject udo = itr.next();
         assertEquals(1, udo.getData("id"));
         assertEquals("George", udo.getData("name"));
+        assertThrows(NoSuchElementException.class, itr::next);
     }
 
 

@@ -13,11 +13,11 @@ import org.varmentano.nocode_plugin.service.UdoDefinitionService;
 import org.varmentano.nocode_plugin.service.UdoService;
 
 import javax.sql.DataSource;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -40,16 +40,19 @@ public class UdoServiceJdbc implements UdoService {
         return defService;
     }
 
-    public UserDefinedObject getUdoById(ObjectDefinition udoDef, int id) {
+    public Optional<UserDefinedObject> findById(ObjectDefinition udoDef, int id) {
         return performSessionAction(session -> {
             @SuppressWarnings("unchecked")
             Map<String, Object> objectMap = (Map<String, Object>) session.get(udoDef.name(), id);
-            return entityMapper.mapToUdo(objectMap, udoDef);
+            if (objectMap == null) {
+                return Optional.empty();
+            }
+            return Optional.of(entityMapper.mapToUdo(objectMap, udoDef));
         }, udoDef);
     }
 
     @SuppressWarnings("unchecked")
-    public List<UserDefinedObject> listUdos(ObjectDefinition udoDef) {
+    public Iterable<UserDefinedObject> findAll(ObjectDefinition udoDef) {
         return performSessionAction(session -> session
                 .createQuery("from " + udoDef.name(), Object.class)
                 .getResultList().stream()
@@ -58,36 +61,47 @@ public class UdoServiceJdbc implements UdoService {
                 .collect(Collectors.toList()), udoDef);
     }
 
-    public void saveNewUdo(UserDefinedObject myUdo) {
+    @SuppressWarnings("unchecked")
+    public UserDefinedObject saveNew(UserDefinedObject myUdo) {
         ObjectDefinition udoDef = myUdo.getDefinition();
-        performTransaction(session -> {
+        return performTransaction(session -> {
             Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
             session.save(myUdo.getDefinition().name(), mapObject);
+            mapObject = (Map<String, Object>) session.get(
+                    myUdo.getDefinition().name(),
+                    (Serializable) myUdo.getData("id"));
+            return entityMapper.mapToUdo(mapObject, udoDef);
         }, udoDef);
     }
 
-    public void updateUdo(UserDefinedObject myUdo) {
+    @SuppressWarnings("unchecked")
+    public UserDefinedObject saveUpdate(UserDefinedObject myUdo) {
         ObjectDefinition udoDef = myUdo.getDefinition();
-        performTransaction(session -> {
+        return performTransaction(session -> {
             Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
             session.update(myUdo.getDefinition().name(), mapObject);
+            mapObject = (Map<String, Object>) session.get(
+                    myUdo.getDefinition().name(),
+                    (Serializable) myUdo.getData("id"));
+            return entityMapper.mapToUdo(mapObject, udoDef);
         }, udoDef);
     }
 
-    public void deleteUdo(ObjectDefinition udoDef, int id) {
+    public void deleteById(ObjectDefinition udoDef, int id) {
         performTransaction(session -> {
             Map<String, Object> mapObject = new HashMap<>(1);
             mapObject.put("id", id);
             session.delete(udoDef.name(), mapObject);
+            return null;
         }, udoDef);
     }
 
-    private void performTransaction(Consumer<Session> action, ObjectDefinition udoDef) {
-        performSessionAction(session -> {
+    private UserDefinedObject performTransaction(Function<Session, UserDefinedObject> action, ObjectDefinition udoDef) {
+        return performSessionAction(session -> {
             Transaction transaction = session.beginTransaction();
-            action.accept(session);
+            UserDefinedObject udo = action.apply(session);
             transaction.commit();
-            return null;
+            return udo;
         }, udoDef);
     }
 

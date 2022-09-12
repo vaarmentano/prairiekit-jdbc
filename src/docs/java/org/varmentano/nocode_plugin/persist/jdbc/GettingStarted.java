@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings({"OptionalGetWithoutIsPresent", "UnusedAssignment"})
 public class GettingStarted {
     public static void main(String[] args) {
         // Initialize Service
@@ -31,10 +32,10 @@ public class GettingStarted {
         myUdo.putData("id", 1);
         myUdo.putData("age", 42);
         myUdo.putData("name", "George");
-        udoService.saveNewUdo(myUdo);
+        myUdo = udoService.saveNew(myUdo);
 
         // Find the object by id (queries from database)
-        UserDefinedObject queriedUdo = udoService.getUdoById(myUdoDef, 1);
+        UserDefinedObject queriedUdo = udoService.findById(myUdoDef, 1).get();
         queriedUdo.getData("id"); // 1
         queriedUdo.getData("age"); // 42
         queriedUdo.getData("name"); // "George"
@@ -44,18 +45,18 @@ public class GettingStarted {
         anotherUdo.putData("id", 2);
         anotherUdo.putData("age", 23);
         anotherUdo.putData("name", "Roger");
-        udoService.saveNewUdo(anotherUdo);
+        udoService.saveNew(anotherUdo);
 
         // List all objects
-        List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
-        udos.size();// 2
+        Iterable<UserDefinedObject> itr = udoService.findAll(myUdoDef);
+        itr.forEach(System.out::println); // Two UDOs
 
         // Update data and persist
         anotherUdo.putData("age", 24);
-        udoService.updateUdo(anotherUdo);
+        anotherUdo = udoService.saveUpdate(anotherUdo);
 
         // Or delete
-        udoService.deleteUdo(myUdoDef, 2);
+        udoService.deleteById(myUdoDef, 2);
     }
 
     private static DataSource createMyDataSource() {

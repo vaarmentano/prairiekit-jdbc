@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Implement UDO Updates">
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Implement UDO Deletion">
+      <change afterPath="$PROJECT_DIR$/docs/GettingStarted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/UdoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/jdbc/UdoServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/jdbc/UdoServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +78,24 @@
   </component>
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
+    <option name="myAllFileTypesSelected" value="false" />
+    <option name="mySelectedFileTypes">
+      <set>
+        <option value="EditorConfig" />
+        <option value="Groovy" />
+        <option value="HTML" />
+        <option value="JAVA" />
+        <option value="JSON" />
+        <option value="Kotlin" />
+        <option value="Properties" />
+        <option value="RNG Compact" />
+        <option value="Shell Script" />
+        <option value="TOML" />
+        <option value="XHTML" />
+        <option value="XML" />
+        <option value="YAML" />
+      </set>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,7 +126,7 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "/Users/vincentarmentano/Development/nocode-plugin-jdbc/src/main/java/org/varmentano/nocode_plugin/jdbc",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+    "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -262,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662863213663</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implement UDO Deletion">
+      <created>1662863865363</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1662863865363</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,7 +313,8 @@
     <MESSAGE value="Implement service's ability to retrieve UDO by ID" />
     <MESSAGE value="DRY up session and transaction handling code in the service" />
     <MESSAGE value="Implement UDO Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement UDO Updates" />
+    <MESSAGE value="Implement UDO Deletion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement UDO Deletion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

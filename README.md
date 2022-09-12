@@ -9,30 +9,8 @@ This module offers a service which, once given a data connection, will manage th
 
 ## Demo
 
-```java
-public static void main(String[] args) {
-    // Initialize Service
-    DataSource myDataSource = createMyDataSource();
-    UdoService udoService = new UdoService(myDataSource);
-
-    // At runtime, define a new type of object
-    List<FieldDefinition> fieldDefinitions = Arrays.asList(
-    new FieldDefinition("integer", "id", true),
-    new FieldDefinition("integer", "age"),
-    new FieldDefinition("string", "name"));
-    ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
-    
-    // Will create the table in the underlying database
-    udoService.deployDefinition(myUdoDef);
-
-    // Create and persist a new user-defined-object
-    UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
-    myUdo.putData("id", 1);
-    myUdo.putData("age", 42);
-    myUdo.putData("name", "George");
-    udoService.saveNewUdo(myUdo);
-}
-```
+[Getting Started](docs/GettingStarted.java)
 
 ## Build
+
 `./gradlew build`

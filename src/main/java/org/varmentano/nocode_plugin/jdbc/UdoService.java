@@ -100,6 +100,7 @@ public class UdoService {
         Session session = sessionFactory.openSession();
         R result = action.apply(session);
         session.close();
+        sessionFactory.close();
         return result;
     }
 }

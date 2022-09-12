@@ -1,15 +1,16 @@
-package org.varmentano.nocode_plugin.jdbc;
+package org.varmentano.nocode_plugin.persist.jdbc;
 
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.tool.schema.Action;
-import org.varmentano.nocode_plugin.jdbc.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
-import org.varmentano.nocode_plugin.jdbc.mapping.DynamicEntityMapper;
-import org.varmentano.nocode_plugin.jdbc.mapping.SessionFactoryMapper;
+import org.varmentano.nocode_plugin.domain.UserDefinedObject;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.persist.jdbc.mapping.DynamicEntityMapper;
+import org.varmentano.nocode_plugin.persist.jdbc.mapping.SessionFactoryMapper;
+import org.varmentano.nocode_plugin.service.UdoDefinitionService;
+import org.varmentano.nocode_plugin.service.UdoService;
 
 import javax.sql.DataSource;
 import java.util.Collections;
@@ -20,27 +21,23 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class UdoService {
+public class UdoServiceJdbc implements UdoService {
     private final DataSource dataSource;
+    private final UdoDefinitionService defService;
     private final SessionFactoryMapper factoryMapper;
     private final DynamicEntityMapper entityMapper;
 
-    public UdoService(DataSource dataSource) {
+    public UdoServiceJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
+        this.defService = new UdoDefinitionServiceJdbc(dataSource);
         this.factoryMapper = new SessionFactoryMapper();
         this.entityMapper = new DynamicEntityMapper();
     }
 
-    /**
-     * WARNING - Only handles deploying a new configuration, does not update an existing def
-     *
-     * @param udoDef Definition
-     */
-    public void deployDefinition(ObjectDefinition udoDef) {
-        Map<String, Object> settings = Collections.singletonMap(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION, Action.CREATE);
-        factoryMapper.mapToSessionFactoryBuilder(udoDef, dataSource, settings)
-                .build()    // Runs hibernate schema management tool
-                .close();
+
+    @Override
+    public UdoDefinitionService getDefinitionService() {
+        return defService;
     }
 
     public UserDefinedObject getUdoById(ObjectDefinition udoDef, int id) {

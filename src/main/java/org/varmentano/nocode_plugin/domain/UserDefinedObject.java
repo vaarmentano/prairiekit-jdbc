@@ -1,6 +1,6 @@
-package org.varmentano.nocode_plugin.jdbc.domain;
+package org.varmentano.nocode_plugin.domain;
 
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 
 import java.util.HashMap;
 import java.util.Map;

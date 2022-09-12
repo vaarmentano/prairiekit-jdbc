@@ -1,9 +1,10 @@
-package org.varmentano.nocode_plugin.jdbc;
+package org.varmentano.nocode_plugin.persist.jdbc;
 
 import org.postgresql.ds.PGSimpleDataSource;
-import org.varmentano.nocode_plugin.jdbc.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.FieldDefinition;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.UserDefinedObject;
+import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.service.UdoService;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public class GettingStarted {
     public static void main(String[] args) {
         // Initialize Service
         DataSource myDataSource = createMyDataSource();
-        UdoService udoService = new UdoService(myDataSource);
+        UdoService udoService = new UdoServiceJdbc(myDataSource);
 
         // At runtime, define a new type of object
         List<FieldDefinition> fieldDefinitions = Arrays.asList(
@@ -23,7 +24,7 @@ public class GettingStarted {
         ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
 
         // Will create the table in the underlying database
-        udoService.deployDefinition(myUdoDef);
+        udoService.getDefinitionService().deployDefinition(myUdoDef);
 
         // Create and persist a new user-defined-object
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);

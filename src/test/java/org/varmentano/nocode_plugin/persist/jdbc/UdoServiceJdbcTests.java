@@ -1,10 +1,10 @@
-package org.varmentano.nocode_plugin.jdbc;
+package org.varmentano.nocode_plugin.persist.jdbc;
 
 import org.junit.jupiter.api.*;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.varmentano.nocode_plugin.jdbc.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.FieldDefinition;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.UserDefinedObject;
+import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,9 +16,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UdoServiceTests {
+public class UdoServiceJdbcTests {
     private static DataSource dataSource;
-    private static UdoService udoService;
+    private static UdoServiceJdbc udoService;
     private static final ObjectDefinition myUdoDef =
             new ObjectDefinition("my_custom_object", Arrays.asList(
                     new FieldDefinition("integer", "id", true),
@@ -35,7 +35,7 @@ public class UdoServiceTests {
         dataSource = ds;
         clearTables();
 
-        udoService = new UdoService(dataSource);
+        udoService = new UdoServiceJdbc(dataSource);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class UdoServiceTests {
         //Given myUdoDef
 
         //When
-        udoService.deployDefinition(myUdoDef);
+        udoService.getDefinitionService().deployDefinition(myUdoDef);
 
         //Then
         String query = """

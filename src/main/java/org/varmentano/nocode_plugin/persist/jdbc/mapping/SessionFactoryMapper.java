@@ -1,4 +1,4 @@
-package org.varmentano.nocode_plugin.jdbc.mapping;
+package org.varmentano.nocode_plugin.persist.jdbc.mapping;
 
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -6,8 +6,8 @@ import org.hibernate.boot.SessionFactoryBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.FieldDefinition;
-import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

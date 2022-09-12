@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Implement UDO Deletion">
-      <change afterPath="$PROJECT_DIR$/docs/GettingStarted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Create docs source set to simplify compiling GettingStarted.java doc">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc/UdoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org.varmentano.nocode_plugin.jdbc/GettingStarted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build setup" type="c8890929:TasksNode$1" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -61,6 +61,11 @@
                 <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
                 <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -103,6 +108,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="NamedScopeManager">
+    <scope name="Docs" pattern="src[nocode-plugin-jdbc.docs]:*..*" />
+  </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
@@ -135,6 +143,9 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/jdbc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/docs/java/org.varmentano.nocode_plugin.jdbc" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.varmentano.nocode_plugin.jdbc.mapping" />
@@ -215,6 +226,27 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="nocode-plugin-jdbc [docsClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="docsClasses" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="nocode-plugin-jdbc [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -238,6 +270,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Plugin Demo" />
+      <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
       <item itemvalue="Gradle.UdoServiceTests" />
       <item itemvalue="Gradle.UdoServiceTests.addition" />
       <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
@@ -246,8 +279,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.UdoServiceTests" />
-        <item itemvalue="Gradle.nocode-plugin-jdbc [test]" />
+        <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
         <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
+        <item itemvalue="Gradle.nocode-plugin-jdbc [test]" />
         <item itemvalue="Gradle.UdoServiceTests.addition" />
       </list>
     </recent_temporary>
@@ -289,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662863865363</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Externalize java code snippet from readme in hopes to add compilation checks.">
+      <created>1662997149207</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1662997149207</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +355,9 @@
     <MESSAGE value="DRY up session and transaction handling code in the service" />
     <MESSAGE value="Implement UDO Updates" />
     <MESSAGE value="Implement UDO Deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement UDO Deletion" />
+    <MESSAGE value="Externalize java code snippet from readme in hopes to add compilation checks." />
+    <MESSAGE value="Create docs source set to simplify compiling GettingStarted.java doc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create docs source set to simplify compiling GettingStarted.java doc" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,7 +9,7 @@ This module offers a service which, once given a data connection, will manage th
 
 ## Demo
 
-[Getting Started](docs/GettingStarted.java)
+[Getting Started](src/docs/java/org.varmentano.nocode_plugin.jdbc/GettingStarted.java)
 
 ## Build
 

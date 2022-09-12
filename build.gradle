@@ -19,3 +19,18 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+sourceSets {
+    docs {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+        java {
+            srcDirs = ['src/docs/java']
+        }
+    }
+}
+
+configurations {
+    docsImplementation.extendsFrom implementation
+    docsRuntimeOnly.extendsFrom runtimeOnly
+}

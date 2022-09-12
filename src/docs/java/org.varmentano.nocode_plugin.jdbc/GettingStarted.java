@@ -1,3 +1,14 @@
+package org.varmentano.nocode_plugin.jdbc;
+
+import org.postgresql.ds.PGSimpleDataSource;
+import org.varmentano.nocode_plugin.jdbc.domain.UserDefinedObject;
+import org.varmentano.nocode_plugin.jdbc.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.jdbc.domain.definition.ObjectDefinition;
+
+import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.List;
+
 public class GettingStarted {
     public static void main(String[] args) {
         // Initialize Service
@@ -23,20 +34,20 @@ public class GettingStarted {
 
         // Find the object by id (queries from database)
         UserDefinedObject queriedUdo = udoService.getUdoById(myUdoDef, 1);
-        udo.getData("id"); // 1
-        udo.getData("age"); // 42
-        udo.getData("name"); // "George"
+        queriedUdo.getData("id"); // 1
+        queriedUdo.getData("age"); // 42
+        queriedUdo.getData("name"); // "George"
 
         // Add another object for this example
         UserDefinedObject anotherUdo = new UserDefinedObject(myUdoDef);
         myUdo.putData("id", 2);
         myUdo.putData("age", 23);
         myUdo.putData("name", "Roger");
-        udoService.saveNewUdo(myUdo);
+        udoService.saveNewUdo(anotherUdo);
 
         // List all objects
         List<UserDefinedObject> udos = udoService.listUdos(myUdoDef);
-        udos.size(); // 2
+        udos.size();// 2
 
         // Update data and persist
         myUdo.putData("age", 24);
@@ -45,4 +56,14 @@ public class GettingStarted {
         // Or delete
         udoService.deleteUdo(myUdoDef, 2);
     }
+
+    private static DataSource createMyDataSource() {
+        PGSimpleDataSource ds = new PGSimpleDataSource();
+        ds.setServerNames(new String[]{"localhost"});
+        ds.setDatabaseName("nocode_plugin");
+        ds.setUser("postgres");
+        return ds;
+    }
+
+
 }

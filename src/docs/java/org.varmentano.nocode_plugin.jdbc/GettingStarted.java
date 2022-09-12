@@ -40,9 +40,9 @@ public class GettingStarted {
 
         // Add another object for this example
         UserDefinedObject anotherUdo = new UserDefinedObject(myUdoDef);
-        myUdo.putData("id", 2);
-        myUdo.putData("age", 23);
-        myUdo.putData("name", "Roger");
+        anotherUdo.putData("id", 2);
+        anotherUdo.putData("age", 23);
+        anotherUdo.putData("name", "Roger");
         udoService.saveNewUdo(anotherUdo);
 
         // List all objects
@@ -50,7 +50,7 @@ public class GettingStarted {
         udos.size();// 2
 
         // Update data and persist
-        myUdo.putData("age", 24);
+        anotherUdo.putData("age", 24);
         udoService.updateUdo(anotherUdo);
 
         // Or delete

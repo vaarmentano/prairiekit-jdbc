@@ -23,7 +23,6 @@ public class UdoServiceJdbcTests {
     private static UdoServiceJdbc udoService;
     private static final ObjectDefinition myUdoDef =
             new ObjectDefinition("my_custom_object", Arrays.asList(
-                    new FieldDefinition("integer", "id", true),
                     new FieldDefinition("integer", "age"),
                     new FieldDefinition("string", "name"))
             );
@@ -79,14 +78,13 @@ public class UdoServiceJdbcTests {
 
         //When
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
-        myUdo.putData("id", 1);
         myUdo.putData("age", 42);
         myUdo.putData("name", "George");
         myUdo = udoService.saveNew(myUdo);
 
         //Then
         assertNotNull(myUdo);
-        assertEquals(1, myUdo.getData("id"));
+        assertEquals(1, myUdo.getId());
         assertEquals(42, myUdo.getData("age"));
         assertEquals("George", myUdo.getData("name"));
         String query = "SELECT * FROM my_custom_object";
@@ -116,7 +114,7 @@ public class UdoServiceJdbcTests {
         assert (opt.isPresent());
         UserDefinedObject udo = opt.get();
         assertNotNull(udo);
-        assertEquals(1, udo.getData("id"));
+        assertEquals(1, udo.getId());
         assertEquals(42, udo.getData("age"));
         assertEquals("George", udo.getData("name"));
         assertNull(udo.getData("$type$"));
@@ -127,7 +125,6 @@ public class UdoServiceJdbcTests {
     void listAll() {
         //Given
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
-        myUdo.putData("id", 2);
         myUdo.putData("age", 23);
         myUdo.putData("name", "Roger");
         udoService.saveNew(myUdo);
@@ -138,11 +135,11 @@ public class UdoServiceJdbcTests {
 
         //Then
         UserDefinedObject udo = itr.next();
-        assertEquals(1, udo.getData("id"));
+        assertEquals(1, udo.getId());
         assertEquals(42, udo.getData("age"));
         assertEquals("George", udo.getData("name"));
         udo = itr.next();
-        assertEquals(2, udo.getData("id"));
+        assertEquals(2, udo.getId());
         assertEquals(23, udo.getData("age"));
         assertEquals("Roger", udo.getData("name"));
         assertThrows(NoSuchElementException.class, itr::next);
@@ -187,7 +184,7 @@ public class UdoServiceJdbcTests {
         //Then
         Iterator<UserDefinedObject> itr = udoService.findAll(myUdoDef).iterator();
         UserDefinedObject udo = itr.next();
-        assertEquals(1, udo.getData("id"));
+        assertEquals(1, udo.getId());
         assertEquals("George", udo.getData("name"));
         assertThrows(NoSuchElementException.class, itr::next);
     }

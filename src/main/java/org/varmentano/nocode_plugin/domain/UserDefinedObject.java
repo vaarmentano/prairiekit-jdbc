@@ -7,14 +7,24 @@ import java.util.Map;
 
 public class UserDefinedObject {
     private final ObjectDefinition schema;
+    private int id;
     private final Map<String, Object> data = new HashMap<>();
 
     public UserDefinedObject(ObjectDefinition def) {
         this.schema = def;
     }
 
+    public UserDefinedObject(ObjectDefinition def, int id) {
+        this.schema = def;
+        this.id = id;
+    }
+
     public ObjectDefinition getDefinition() {
         return schema;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Object getData(String fieldKey) {

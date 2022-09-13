@@ -50,6 +50,7 @@ public class SessionFactoryMapper {
             Element rootElement = doc.createElement("hibernate-mapping");
             Element classElement = doc.createElement("class");
             classElement.setAttribute("entity-name", udoDef.name());
+            classElement.appendChild(mapIdToElement(doc));
             udoDef.fieldDefinitions().stream()
                     .map(fieldDef -> this.mapFieldToElement(fieldDef, doc))
                     .forEach(classElement::appendChild);
@@ -61,13 +62,19 @@ public class SessionFactoryMapper {
         }
     }
 
+    private Element mapIdToElement(Document doc) {
+        Element elem = doc.createElement("id");
+        elem.setAttribute("name", DynamicEntityMapper.ID_COL_NAME);
+        elem.setAttribute("length", "255");
+        elem.setAttribute("type", "integer");
+        Element generator = doc.createElement("generator");
+        generator.setAttribute("class", "native");
+        elem.appendChild(generator);
+        return elem;
+    }
+
     private Element mapFieldToElement(FieldDefinition fieldDef, Document doc) {
-        Element elem;
-        if (fieldDef.id()) {
-            elem = doc.createElement("id");
-        } else {
-            elem = doc.createElement("property");
-        }
+        Element elem = doc.createElement("property");
         elem.setAttribute("name", fieldDef.name());
         elem.setAttribute("length", "255");
         elem.setAttribute("type", fieldDef.type());

@@ -13,13 +13,14 @@ import org.varmentano.nocode_plugin.service.UdoDefinitionService;
 import org.varmentano.nocode_plugin.service.UdoService;
 
 import javax.sql.DataSource;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static org.varmentano.nocode_plugin.persist.jdbc.mapping.DynamicEntityMapper.ID_COL_NAME;
 
 public class UdoServiceJdbc implements UdoService {
     private final DataSource dataSource;
@@ -66,10 +67,8 @@ public class UdoServiceJdbc implements UdoService {
         ObjectDefinition udoDef = myUdo.getDefinition();
         return performTransaction(session -> {
             Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
-            session.save(myUdo.getDefinition().name(), mapObject);
-            mapObject = (Map<String, Object>) session.get(
-                    myUdo.getDefinition().name(),
-                    (Serializable) myUdo.getData("id"));
+            int newId = (int) session.save(myUdo.getDefinition().name(), mapObject);
+            mapObject = (Map<String, Object>) session.get(myUdo.getDefinition().name(), newId);
             return entityMapper.mapToUdo(mapObject, udoDef);
         }, udoDef);
     }
@@ -80,9 +79,7 @@ public class UdoServiceJdbc implements UdoService {
         return performTransaction(session -> {
             Map<String, Object> mapObject = entityMapper.mapToMap(myUdo);
             session.update(myUdo.getDefinition().name(), mapObject);
-            mapObject = (Map<String, Object>) session.get(
-                    myUdo.getDefinition().name(),
-                    (Serializable) myUdo.getData("id"));
+            mapObject = (Map<String, Object>) session.get(myUdo.getDefinition().name(), myUdo.getId());
             return entityMapper.mapToUdo(mapObject, udoDef);
         }, udoDef);
     }
@@ -90,7 +87,7 @@ public class UdoServiceJdbc implements UdoService {
     public void deleteById(ObjectDefinition udoDef, int id) {
         performTransaction(session -> {
             Map<String, Object> mapObject = new HashMap<>(1);
-            mapObject.put("id", id);
+            mapObject.put(ID_COL_NAME, id);
             session.delete(udoDef.name(), mapObject);
             return null;
         }, udoDef);

@@ -7,11 +7,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual">
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="internalize id handling into udo service, use hibernates auto generating id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/ObjectDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/ObjectDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +122,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2EXFCHYTNYqscf0C33LunFj3eYt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -155,7 +159,20 @@
       <recent name="org.varmentano.nocode_plugin.jdbc.mapping" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UdoServiceJdbcTests">
+  <component name="RunManager" selected="Application.GettingStarted">
+    <configuration name="GettingStarted" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.varmentano.nocode_plugin.persist.jdbc.GettingStarted" />
+      <module name="nocode-plugin-jdbc.docs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.varmentano.nocode_plugin.persist.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Plugin Demo" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.varmentano.nocode_plugin.jdbc.Main" />
       <module name="nocode-plugin-jdbc.main" />
@@ -232,27 +249,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="nocode-plugin-jdbc [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="nocode-plugin-jdbc [docsClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -276,19 +272,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Plugin Demo" />
+      <item itemvalue="Application.GettingStarted" />
       <item itemvalue="Gradle.UdoServiceJdbcTests" />
       <item itemvalue="Gradle.UdoServiceTestsJdbc" />
       <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
       <item itemvalue="Gradle.UdoServiceTests" />
-      <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GettingStarted" />
         <item itemvalue="Gradle.UdoServiceJdbcTests" />
         <item itemvalue="Gradle.UdoServiceTestsJdbc" />
         <item itemvalue="Gradle.UdoServiceTests" />
         <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
-        <item itemvalue="Gradle.nocode-plugin-jdbc [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -378,7 +374,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663004976465</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Modify service interface to more closely align to a standard repository pattern.">
+      <created>1663012552306</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1663012552306</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Modify service interface to more closely align to a standard repository pattern.">
+      <created>1663013202535</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1663013202535</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -408,7 +418,9 @@
     <MESSAGE value="Postgres jdbc should only a dependency be for tests (and docs)" />
     <MESSAGE value="Fix some typos in the GettingStarted doc" />
     <MESSAGE value="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual" />
+    <MESSAGE value="Modify service interface to more closely align to a standard repository pattern." />
+    <MESSAGE value="internalize id handling into udo service, use hibernates auto generating id" />
+    <option name="LAST_COMMIT_MESSAGE" value="internalize id handling into udo service, use hibernates auto generating id" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

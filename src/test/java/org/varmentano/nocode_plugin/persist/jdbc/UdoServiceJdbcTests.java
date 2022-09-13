@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.FieldType;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 
 import javax.sql.DataSource;
@@ -23,8 +24,8 @@ public class UdoServiceJdbcTests {
     private static UdoServiceJdbc udoService;
     private static final ObjectDefinition myUdoDef =
             new ObjectDefinition("my_custom_object", Arrays.asList(
-                    new FieldDefinition("integer", "age"),
-                    new FieldDefinition("string", "name"))
+                    new FieldDefinition(FieldType.INTEGER, "age"),
+                    new FieldDefinition(FieldType.TEXT, "name"))
             );
 
     @BeforeAll

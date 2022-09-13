@@ -3,6 +3,7 @@ package org.varmentano.nocode_plugin.persist.jdbc;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.FieldType;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 import org.varmentano.nocode_plugin.service.UdoService;
 
@@ -19,8 +20,8 @@ public class GettingStarted {
 
         // At runtime, define a new type of object
         List<FieldDefinition> fieldDefinitions = Arrays.asList(
-                new FieldDefinition("integer", "age"),
-                new FieldDefinition("string", "name"));
+                new FieldDefinition(FieldType.INTEGER, "age"),
+                new FieldDefinition(FieldType.TEXT, "name"));
         ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
 
         // Will create the table in the underlying database

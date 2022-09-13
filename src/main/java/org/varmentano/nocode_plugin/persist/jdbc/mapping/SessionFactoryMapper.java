@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
+import org.varmentano.nocode_plugin.domain.definition.FieldType;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -77,8 +78,15 @@ public class SessionFactoryMapper {
         Element elem = doc.createElement("property");
         elem.setAttribute("name", fieldDef.name());
         elem.setAttribute("length", "255");
-        elem.setAttribute("type", fieldDef.type());
+        elem.setAttribute("type", mapFieldType(fieldDef.type()));
         return elem;
+    }
+
+    private String mapFieldType(FieldType fieldType) {
+        return switch (fieldType) {
+            case TEXT -> "string";
+            case INTEGER -> "integer";
+        };
     }
 
     private InputStream docToInputStream(Document doc) {

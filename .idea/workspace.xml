@@ -8,13 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="internalize id handling into udo service, use hibernates auto generating id">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/ObjectDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/ObjectDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
@@ -85,6 +82,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -159,7 +157,7 @@
       <recent name="org.varmentano.nocode_plugin.jdbc.mapping" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GettingStarted">
+  <component name="RunManager" selected="Gradle.UdoServiceJdbcTests">
     <configuration name="GettingStarted" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.varmentano.nocode_plugin.persist.jdbc.GettingStarted" />
       <module name="nocode-plugin-jdbc.docs" />
@@ -280,8 +278,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GettingStarted" />
         <item itemvalue="Gradle.UdoServiceJdbcTests" />
+        <item itemvalue="Application.GettingStarted" />
         <item itemvalue="Gradle.UdoServiceTestsJdbc" />
         <item itemvalue="Gradle.UdoServiceTests" />
         <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
@@ -388,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663013202535</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="internalize id handling into udo service, use hibernates auto generating id">
+      <created>1663038412893</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1663038412893</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

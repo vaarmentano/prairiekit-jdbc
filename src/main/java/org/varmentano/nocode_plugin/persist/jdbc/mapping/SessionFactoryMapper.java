@@ -86,6 +86,7 @@ public class SessionFactoryMapper {
         return switch (fieldType) {
             case TEXT -> "string";
             case INTEGER -> "integer";
+            case DATE -> "LocalDate";
         };
     }
 

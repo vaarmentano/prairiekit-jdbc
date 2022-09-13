@@ -7,11 +7,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="internalize id handling into udo service, use hibernates auto generating id">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldType.java" afterDir="false" />
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="make field definition type an enum">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
@@ -393,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663038412893</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="make field definition type an enum">
+      <created>1663039182265</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1663039182265</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -425,7 +431,24 @@
     <MESSAGE value="Refactor service into 2 (one for definition and one for actual udo).  Also split between the &quot;core&quot; of the plugin and the actual" />
     <MESSAGE value="Modify service interface to more closely align to a standard repository pattern." />
     <MESSAGE value="internalize id handling into udo service, use hibernates auto generating id" />
-    <option name="LAST_COMMIT_MESSAGE" value="internalize id handling into udo service, use hibernates auto generating id" />
+    <MESSAGE value="make field definition type an enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="make field definition type an enum" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.6.11.Final/f6332e6fbc4634e7aeccd24a5c527a2da31e9f11/hibernate-core-5.6.11.Final-sources.jar!/org/hibernate/boot/jaxb/spi/Binding.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.6.11.Final/f6332e6fbc4634e7aeccd24a5c527a2da31e9f11/hibernate-core-5.6.11.Final-sources.jar!/org/hibernate/boot/jaxb/spi/Binding.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

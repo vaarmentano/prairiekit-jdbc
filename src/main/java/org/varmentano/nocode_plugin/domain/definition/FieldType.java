@@ -2,5 +2,6 @@ package org.varmentano.nocode_plugin.domain.definition;
 
 public enum FieldType {
     TEXT,
-    INTEGER
+    INTEGER,
+    DATE
 }

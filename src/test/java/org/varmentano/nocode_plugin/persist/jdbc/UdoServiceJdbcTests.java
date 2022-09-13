@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -25,7 +27,8 @@ public class UdoServiceJdbcTests {
     private static final ObjectDefinition myUdoDef =
             new ObjectDefinition("my_custom_object", Arrays.asList(
                     new FieldDefinition(FieldType.INTEGER, "age"),
-                    new FieldDefinition(FieldType.TEXT, "name"))
+                    new FieldDefinition(FieldType.TEXT, "name"),
+                    new FieldDefinition(FieldType.DATE, "birthday"))
             );
 
     @BeforeAll
@@ -65,6 +68,8 @@ public class UdoServiceJdbcTests {
             assertEquals("age", rs.getString("column_name"));
             rs.next();
             assertEquals("name", rs.getString("column_name"));
+            rs.next();
+            assertEquals("birthday", rs.getString("column_name"));
             assertFalse(rs.next());
             connection.close();
         } catch (SQLException e) {
@@ -81,6 +86,7 @@ public class UdoServiceJdbcTests {
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
         myUdo.putData("age", 42);
         myUdo.putData("name", "George");
+        myUdo.putData("birthday", LocalDate.of(2022, Month.JANUARY, 1));
         myUdo = udoService.saveNew(myUdo);
 
         //Then
@@ -118,6 +124,7 @@ public class UdoServiceJdbcTests {
         assertEquals(1, udo.getId());
         assertEquals(42, udo.getData("age"));
         assertEquals("George", udo.getData("name"));
+        assertEquals(LocalDate.of(2022, Month.JANUARY, 1), udo.getData("birthday"));
         assertNull(udo.getData("$type$"));
     }
 

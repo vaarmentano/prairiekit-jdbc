@@ -14,9 +14,9 @@ public class UdoDefinitionServiceJdbc implements UdoDefinitionService {
     private final DataSource dataSource;
     private final SessionFactoryMapper factoryMapper;
 
-    public UdoDefinitionServiceJdbc(DataSource dataSource) {
+    public UdoDefinitionServiceJdbc(DataSource dataSource, SessionFactoryMapper factoryMapper) {
         this.dataSource = dataSource;
-        this.factoryMapper = new SessionFactoryMapper();
+        this.factoryMapper = factoryMapper;
     }
 
     public void deployDefinition(ObjectDefinition udoDef) {

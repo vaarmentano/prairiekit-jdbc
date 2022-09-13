@@ -6,6 +6,7 @@ import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.domain.definition.FieldType;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.service.UdoRepository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -24,12 +25,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UdoServiceJdbcTests {
     private static DataSource dataSource;
     private static UdoServiceJdbc udoService;
+    private static UdoRepository myUdoRepository;
     private static final ObjectDefinition myUdoDef =
             new ObjectDefinition("my_custom_object", Arrays.asList(
                     new FieldDefinition(FieldType.INTEGER, "age"),
                     new FieldDefinition(FieldType.TEXT, "name"),
-                    new FieldDefinition(FieldType.DATE, "birthday"))
-            );
+                    new FieldDefinition(FieldType.DATE, "birthday")));
 
     @BeforeAll
     static void setup() {
@@ -49,7 +50,8 @@ public class UdoServiceJdbcTests {
         //Given myUdoDef
 
         //When
-        udoService.getDefinitionService().deployDefinition(myUdoDef);
+        udoService.deployDefinition(myUdoDef);
+        myUdoRepository = udoService.getUdoRepository("my_custom_object");
 
         //Then
         String query = """
@@ -87,7 +89,7 @@ public class UdoServiceJdbcTests {
         myUdo.putData("age", 42);
         myUdo.putData("name", "George");
         myUdo.putData("birthday", LocalDate.of(2022, Month.JANUARY, 1));
-        myUdo = udoService.saveNew(myUdo);
+        myUdo = myUdoRepository.saveNew(myUdo);
 
         //Then
         assertNotNull(myUdo);
@@ -115,7 +117,7 @@ public class UdoServiceJdbcTests {
         //Given myUdoDef
 
         //When
-        Optional<UserDefinedObject> opt = udoService.findById(myUdoDef, 1);
+        Optional<UserDefinedObject> opt = myUdoRepository.findById(1);
 
         //Then
         assert (opt.isPresent());
@@ -135,10 +137,10 @@ public class UdoServiceJdbcTests {
         UserDefinedObject myUdo = new UserDefinedObject(myUdoDef);
         myUdo.putData("age", 23);
         myUdo.putData("name", "Roger");
-        udoService.saveNew(myUdo);
+        myUdoRepository.saveNew(myUdo);
 
         //When
-        Iterable<UserDefinedObject> udos = udoService.findAll(myUdoDef);
+        Iterable<UserDefinedObject> udos = myUdoRepository.findAll();
         Iterator<UserDefinedObject> itr = udos.iterator();
 
         //Then
@@ -158,11 +160,11 @@ public class UdoServiceJdbcTests {
     void updateField() {
         //Given myUdoDef
         @SuppressWarnings("OptionalGetWithoutIsPresent")
-        UserDefinedObject myUdo = udoService.findById(myUdoDef, 1).get();
+        UserDefinedObject myUdo = myUdoRepository.findById(1).get();
 
         //When
         myUdo.putData("age", 43);
-        myUdo = udoService.saveUpdate(myUdo);
+        myUdo = myUdoRepository.saveUpdate(myUdo);
 
         //Then
         assertEquals(43, myUdo.getData("age"));
@@ -187,10 +189,10 @@ public class UdoServiceJdbcTests {
         //Given myUdoDef
 
         //When
-        udoService.deleteById(myUdoDef, 2);
+        myUdoRepository.deleteById(2);
 
         //Then
-        Iterator<UserDefinedObject> itr = udoService.findAll(myUdoDef).iterator();
+        Iterator<UserDefinedObject> itr = myUdoRepository.findAll().iterator();
         UserDefinedObject udo = itr.next();
         assertEquals(1, udo.getId());
         assertEquals("George", udo.getData("name"));

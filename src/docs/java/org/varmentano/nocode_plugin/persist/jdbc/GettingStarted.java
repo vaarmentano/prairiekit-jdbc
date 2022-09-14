@@ -4,7 +4,7 @@ import org.postgresql.ds.PGSimpleDataSource;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.domain.definition.FieldType;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.service.UdoRepository;
 import org.varmentano.nocode_plugin.service.UdoService;
 
@@ -26,7 +26,7 @@ public class GettingStarted {
                 new FieldDefinition(FieldType.INTEGER, "age"),
                 new FieldDefinition(FieldType.TEXT, "name"),
                 new FieldDefinition(FieldType.DATE, "birthday"));
-        ObjectDefinition myUdoDef = new ObjectDefinition("my_custom_object", fieldDefinitions);
+        UdoDefinition myUdoDef = new UdoDefinition("my_custom_object", fieldDefinitions);
 
         // Will create the table in the underlying database
         udoService.deployDefinition(myUdoDef);

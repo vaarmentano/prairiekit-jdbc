@@ -1,25 +1,25 @@
 package org.varmentano.nocode_plugin.domain;
 
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserDefinedObject {
-    private final ObjectDefinition schema;
+    private final UdoDefinition schema;
     private int id;
     private final Map<String, Object> data = new HashMap<>();
 
-    public UserDefinedObject(ObjectDefinition def) {
+    public UserDefinedObject(UdoDefinition def) {
         this.schema = def;
     }
 
-    public UserDefinedObject(ObjectDefinition def, int id) {
+    public UserDefinedObject(UdoDefinition def, int id) {
         this.schema = def;
         this.id = id;
     }
 
-    public ObjectDefinition getDefinition() {
+    public UdoDefinition getDefinition() {
         return schema;
     }
 

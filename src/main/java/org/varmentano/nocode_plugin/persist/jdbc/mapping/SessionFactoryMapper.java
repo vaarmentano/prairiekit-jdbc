@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.domain.definition.FieldType;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.UdoDefinitionEntity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,7 +34,7 @@ public class SessionFactoryMapper {
         return mapToSessionFactoryBuilder(dataSource, Collections.emptyMap(), null);
     }
 
-    public SessionFactoryBuilder mapToSessionFactoryBuilder(DataSource dataSource, Map<String, Object> settings, ObjectDefinition udoDef) {
+    public SessionFactoryBuilder mapToSessionFactoryBuilder(DataSource dataSource, Map<String, Object> settings, UdoDefinition udoDef) {
         InputStream xmlInputStream = null;
         if (udoDef != null) {
             Document xmlDoc = mapUdoToHibernateMapping(udoDef);
@@ -58,7 +58,7 @@ public class SessionFactoryMapper {
                 .build();
     }
 
-    private Document mapUdoToHibernateMapping(ObjectDefinition udoDef) {
+    private Document mapUdoToHibernateMapping(UdoDefinition udoDef) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

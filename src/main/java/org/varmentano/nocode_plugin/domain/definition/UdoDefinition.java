@@ -3,7 +3,7 @@ package org.varmentano.nocode_plugin.domain.definition;
 import java.util.Collections;
 import java.util.List;
 
-public record ObjectDefinition(
+public record UdoDefinition(
         String name,
         List<FieldDefinition> fieldDefinitions) {
 

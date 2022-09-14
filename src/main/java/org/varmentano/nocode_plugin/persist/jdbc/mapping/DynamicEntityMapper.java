@@ -1,7 +1,7 @@
 package org.varmentano.nocode_plugin.persist.jdbc.mapping;
 
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
 public class DynamicEntityMapper {
     public static final String ID_COL_NAME = "id";
 
-    public UserDefinedObject mapToUdo(Map<String, Object> map, ObjectDefinition udoDef) {
+    public UserDefinedObject mapToUdo(Map<String, Object> map, UdoDefinition udoDef) {
         UserDefinedObject udo = new UserDefinedObject(udoDef, ((int) map.get(ID_COL_NAME)));
         map.entrySet().stream()
                 .filter(entry -> !entry.getKey().startsWith("$"))

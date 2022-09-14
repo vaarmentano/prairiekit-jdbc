@@ -2,7 +2,7 @@ package org.varmentano.nocode_plugin.persist.jdbc;
 
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.tool.schema.Action;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.mapping.SessionFactoryMapper;
 import org.varmentano.nocode_plugin.service.UdoDefinitionService;
 
@@ -19,7 +19,7 @@ public class UdoDefinitionServiceJdbc implements UdoDefinitionService {
         this.factoryMapper = factoryMapper;
     }
 
-    public void deployDefinition(ObjectDefinition udoDef) {
+    public void deployDefinition(UdoDefinition udoDef) {
         Map<String, Object> settings = Collections.singletonMap(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION, Action.CREATE);
         factoryMapper.mapToSessionFactoryBuilder(dataSource, settings, udoDef)
                 .build()    // Runs hibernate schema management tool

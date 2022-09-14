@@ -1,10 +1,10 @@
 package org.varmentano.nocode_plugin.service;
 
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 
 public interface UdoService {
 
-    void deployDefinition(ObjectDefinition udoDef);
+    void deployDefinition(UdoDefinition udoDef);
 
     UdoRepository getUdoRepository(String definitionId);
 }

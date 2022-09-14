@@ -1,6 +1,6 @@
 package org.varmentano.nocode_plugin.service;
 
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 
 public interface UdoDefinitionService {
     /**
@@ -8,5 +8,5 @@ public interface UdoDefinitionService {
      *
      * @param udoDef Definition
      */
-    void deployDefinition(ObjectDefinition udoDef);
+    void deployDefinition(UdoDefinition udoDef);
 }

@@ -1,7 +1,7 @@
 package org.varmentano.nocode_plugin.persist.jdbc;
 
 import org.hibernate.SessionFactory;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.mapping.SessionFactoryMapper;
 import org.varmentano.nocode_plugin.service.UdoDefinitionRepository;
 import org.varmentano.nocode_plugin.service.UdoDefinitionService;
@@ -28,7 +28,7 @@ public class UdoServiceJdbc implements UdoService {
     }
 
     @Override
-    public void deployDefinition(ObjectDefinition udoDef) {
+    public void deployDefinition(UdoDefinition udoDef) {
         defService.deployDefinition(udoDef);
         defRepository.saveNew(udoDef);
         udoRepos.put(udoDef.name(), new UdoRepositoryJdbc(dataSource, udoDef, factoryMapper));
@@ -38,7 +38,7 @@ public class UdoServiceJdbc implements UdoService {
     public UdoRepository getUdoRepository(String definitionId) {
         UdoRepository udoRepo = udoRepos.get(definitionId);
         if (udoRepo == null) {
-            ObjectDefinition udoDef = defRepository.findById(definitionId).orElseThrow();
+            UdoDefinition udoDef = defRepository.findById(definitionId).orElseThrow();
             udoRepos.put(definitionId, new UdoRepositoryJdbc(dataSource, udoDef, factoryMapper));
         }
         return udoRepos.get(definitionId);

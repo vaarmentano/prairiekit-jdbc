@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AvailableSettings;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.mapping.DynamicEntityMapper;
 import org.varmentano.nocode_plugin.persist.jdbc.mapping.SessionFactoryMapper;
 import org.varmentano.nocode_plugin.service.UdoRepository;
@@ -24,11 +24,11 @@ import static org.varmentano.nocode_plugin.persist.jdbc.mapping.DynamicEntityMap
 public class UdoRepositoryJdbc implements UdoRepository {
 
     private final DataSource dataSource;
-    private final ObjectDefinition udoDef;
+    private final UdoDefinition udoDef;
     private final SessionFactoryMapper factoryMapper;
     private final DynamicEntityMapper entityMapper;
 
-    public UdoRepositoryJdbc(DataSource dataSource, ObjectDefinition udoDef, SessionFactoryMapper factoryMapper) {
+    public UdoRepositoryJdbc(DataSource dataSource, UdoDefinition udoDef, SessionFactoryMapper factoryMapper) {
         this.dataSource = dataSource;
         this.udoDef = udoDef;
         this.factoryMapper = factoryMapper;
@@ -85,7 +85,7 @@ public class UdoRepositoryJdbc implements UdoRepository {
         }, udoDef);
     }
 
-    private UserDefinedObject performTransaction(Function<Session, UserDefinedObject> action, ObjectDefinition udoDef) {
+    private UserDefinedObject performTransaction(Function<Session, UserDefinedObject> action, UdoDefinition udoDef) {
         return performSessionAction(session -> {
             Transaction transaction = session.beginTransaction();
             UserDefinedObject udo = action.apply(session);
@@ -94,7 +94,7 @@ public class UdoRepositoryJdbc implements UdoRepository {
         }, udoDef);
     }
 
-    private <R> R performSessionAction(Function<Session, R> action, ObjectDefinition udoDef) {
+    private <R> R performSessionAction(Function<Session, R> action, UdoDefinition udoDef) {
         Map<String, Object> settings = Collections.singletonMap(AvailableSettings.DEFAULT_ENTITY_MODE, EntityMode.MAP.getExternalName());
         SessionFactory sessionFactory = factoryMapper.mapToSessionFactoryBuilder(dataSource, settings, udoDef).build();
         Session session = sessionFactory.openSession();

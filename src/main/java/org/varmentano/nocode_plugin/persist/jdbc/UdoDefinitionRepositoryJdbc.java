@@ -3,7 +3,7 @@ package org.varmentano.nocode_plugin.persist.jdbc;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.mapping.DefinitionEntityMapper;
 import org.varmentano.nocode_plugin.service.UdoDefinitionRepository;
 
@@ -21,16 +21,16 @@ public class UdoDefinitionRepositoryJdbc implements UdoDefinitionRepository {
     }
 
     @Override
-    public Optional<ObjectDefinition> findById(String id) {
+    public Optional<UdoDefinition> findById(String id) {
         return performSessionAction(session -> {
             UdoDefinitionEntity definitionEntity = session.get(UdoDefinitionEntity.class, id);
-            ObjectDefinition definition = definitionMapper.mapDefinitionFromEntity(definitionEntity);
+            UdoDefinition definition = definitionMapper.mapDefinitionFromEntity(definitionEntity);
             return Optional.ofNullable(definition);
         });
     }
 
     @Override
-    public void saveNew(ObjectDefinition udoDef) {
+    public void saveNew(UdoDefinition udoDef) {
         performTransaction(session -> session.save(definitionMapper.mapDefinitionToEntity(udoDef)));
     }
 

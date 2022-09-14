@@ -5,7 +5,7 @@ import org.postgresql.ds.PGSimpleDataSource;
 import org.varmentano.nocode_plugin.domain.UserDefinedObject;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.domain.definition.FieldType;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.service.UdoRepository;
 
 import javax.sql.DataSource;
@@ -26,8 +26,8 @@ public class UdoServiceJdbcTests {
     private static DataSource dataSource;
     private static UdoServiceJdbc udoService;
     private static UdoRepository myUdoRepository;
-    private static final ObjectDefinition myUdoDef =
-            new ObjectDefinition("my_custom_object", Arrays.asList(
+    private static final UdoDefinition myUdoDef =
+            new UdoDefinition("my_custom_object", Arrays.asList(
                     new FieldDefinition(FieldType.INTEGER, "age"),
                     new FieldDefinition(FieldType.TEXT, "name"),
                     new FieldDefinition(FieldType.DATE, "birthday")));

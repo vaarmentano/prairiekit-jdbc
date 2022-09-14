@@ -1,7 +1,7 @@
 package org.varmentano.nocode_plugin.persist.jdbc.mapping;
 
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
-import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.domain.definition.UdoDefinition;
 import org.varmentano.nocode_plugin.persist.jdbc.FieldDefinitionEntity;
 import org.varmentano.nocode_plugin.persist.jdbc.UdoDefinitionEntity;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DefinitionEntityMapper {
-    public UdoDefinitionEntity mapDefinitionToEntity(ObjectDefinition def) {
+    public UdoDefinitionEntity mapDefinitionToEntity(UdoDefinition def) {
         UdoDefinitionEntity entity = new UdoDefinitionEntity();
         entity.setName(def.name());
         entity.setFieldDefinitions(mapFieldDefsToEntity(def.fieldDefinitions()));
@@ -29,8 +29,8 @@ public class DefinitionEntityMapper {
         return entity;
     }
 
-    public ObjectDefinition mapDefinitionFromEntity(UdoDefinitionEntity definitionEntity) {
-        return new ObjectDefinition(
+    public UdoDefinition mapDefinitionFromEntity(UdoDefinitionEntity definitionEntity) {
+        return new UdoDefinition(
                 definitionEntity.getName(),
                 mapFieldDefsFromEntity(definitionEntity.getFieldDefinitions()));
     }

@@ -21,7 +21,7 @@ public class UdoDefinitionServiceJdbc implements UdoDefinitionService {
 
     public void deployDefinition(ObjectDefinition udoDef) {
         Map<String, Object> settings = Collections.singletonMap(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION, Action.CREATE);
-        factoryMapper.mapToSessionFactoryBuilder(udoDef, dataSource, settings)
+        factoryMapper.mapToSessionFactoryBuilder(dataSource, settings, udoDef)
                 .build()    // Runs hibernate schema management tool
                 .close();
     }

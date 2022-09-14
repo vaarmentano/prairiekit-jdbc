@@ -7,14 +7,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Implement date type handling">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoRepository.java" afterDir="false" />
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Clean up udo service interface to handle just returning a custom object repo and deploying the definition.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/FieldDefinitionEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionRepositoryJdbc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DefinitionEntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoDefinitionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,11 +145,12 @@
     "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "/Users/vincentarmentano/Development/nocode-plugin-jdbc/src/main/java/org/varmentano/nocode_plugin/service",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "inlay.hints"
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.varmentano.nocode_plugin.persist.jdbc" />
       <recent name="org.varmentano.nocode_plugin.jdbc" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -410,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663079933883</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Clean up udo service interface to handle just returning a custom object repo and deploying the definition.">
+      <created>1663084282904</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1663084282904</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -431,6 +442,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Implement service's ability to retrieve UDO by ID" />
     <MESSAGE value="DRY up session and transaction handling code in the service" />
     <MESSAGE value="Implement UDO Updates" />
@@ -444,7 +456,8 @@
     <MESSAGE value="internalize id handling into udo service, use hibernates auto generating id" />
     <MESSAGE value="make field definition type an enum" />
     <MESSAGE value="Implement date type handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement date type handling" />
+    <MESSAGE value="Clean up udo service interface to handle just returning a custom object repo and deploying the definition." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up udo service interface to handle just returning a custom object repo and deploying the definition." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

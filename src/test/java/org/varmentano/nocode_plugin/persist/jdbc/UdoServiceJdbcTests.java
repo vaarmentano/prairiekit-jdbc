@@ -58,7 +58,7 @@ public class UdoServiceJdbcTests {
                 SELECT *\s
                 FROM information_schema.tables LEFT JOIN information_schema.columns\s
                 ON information_schema.tables.table_name = information_schema.columns.table_name
-                WHERE tables.table_schema = 'public'
+                WHERE tables.table_schema = 'public' AND tables.table_name = 'my_custom_object'
                 ORDER BY ordinal_position""";
         try {
             Connection connection = dataSource.getConnection();

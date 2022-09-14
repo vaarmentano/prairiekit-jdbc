@@ -9,6 +9,7 @@ import org.hibernate.cfg.AvailableSettings;
 import org.varmentano.nocode_plugin.domain.definition.FieldDefinition;
 import org.varmentano.nocode_plugin.domain.definition.FieldType;
 import org.varmentano.nocode_plugin.domain.definition.ObjectDefinition;
+import org.varmentano.nocode_plugin.persist.jdbc.UdoDefinitionEntity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -24,23 +25,37 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Map;
 
 public class SessionFactoryMapper {
 
-    public SessionFactoryBuilder mapToSessionFactoryBuilder(ObjectDefinition udoDef, DataSource dataSource, Map<String, Object> settings) {
-        Document xmlDoc = mapUdoToHibernateMapping(udoDef);
-        InputStream xmlInputStream = docToInputStream(xmlDoc);
+    public SessionFactoryBuilder mapToSessionFactoryBuilder(DataSource dataSource) {
+        return mapToSessionFactoryBuilder(dataSource, Collections.emptyMap(), null);
+    }
 
-        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
+    public SessionFactoryBuilder mapToSessionFactoryBuilder(DataSource dataSource, Map<String, Object> settings, ObjectDefinition udoDef) {
+        InputStream xmlInputStream = null;
+        if (udoDef != null) {
+            Document xmlDoc = mapUdoToHibernateMapping(udoDef);
+            xmlInputStream = docToInputStream(xmlDoc);
+        }
+
+        StandardServiceRegistry standardRegistry = buildStandardRegistry(dataSource, settings);
+        MetadataSources metadataSources = new MetadataSources(standardRegistry)
+                .addAnnotatedClass(UdoDefinitionEntity.class);
+        if (udoDef != null) {
+            metadataSources.addInputStream(xmlInputStream);
+        }
+        Metadata metadata = metadataSources.getMetadataBuilder().build();
+        return metadata.getSessionFactoryBuilder();
+    }
+
+    private StandardServiceRegistry buildStandardRegistry(DataSource dataSource, Map<String, Object> settings) {
+        return new StandardServiceRegistryBuilder()
                 .applySettings(settings)
                 .applySetting(AvailableSettings.DATASOURCE, dataSource)
                 .build();
-        Metadata metadata = new MetadataSources(standardRegistry)
-                .addInputStream(xmlInputStream)
-                .getMetadataBuilder()
-                .build();
-        return metadata.getSessionFactoryBuilder();
     }
 
     private Document mapUdoToHibernateMapping(ObjectDefinition udoDef) {

@@ -96,7 +96,7 @@ public class UdoRepositoryJdbc implements UdoRepository {
 
     private <R> R performSessionAction(Function<Session, R> action, ObjectDefinition udoDef) {
         Map<String, Object> settings = Collections.singletonMap(AvailableSettings.DEFAULT_ENTITY_MODE, EntityMode.MAP.getExternalName());
-        SessionFactory sessionFactory = factoryMapper.mapToSessionFactoryBuilder(udoDef, dataSource, settings).build();
+        SessionFactory sessionFactory = factoryMapper.mapToSessionFactoryBuilder(dataSource, settings, udoDef).build();
         Session session = sessionFactory.openSession();
         R result = action.apply(session);
         session.close();

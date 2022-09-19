@@ -7,18 +7,30 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Clean up udo service interface to handle just returning a custom object repo and deploying the definition.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/FieldDefinitionEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionRepositoryJdbc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DefinitionEntityMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoDefinitionRepository.java" afterDir="false" />
+    <list default="true" id="f6eef851-24e2-4728-b01f-0b904e7a4500" name="Changes" comment="Rename ObjectDefinition to UdoDefinition for consistency">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/docs/java/org/prairiekit/persist/jdbc/GettingStarted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/UserDefinedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/domain/UserDefinedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/domain/definition/FieldDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/FieldType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/domain/definition/FieldType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/domain/definition/UdoDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/domain/definition/UdoDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/FieldDefinitionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/FieldDefinitionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/UdoDefinitionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionRepositoryJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/UdoDefinitionRepositoryJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoDefinitionServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/UdoDefinitionServiceJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoRepositoryJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/UdoRepositoryJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/UdoServiceJdbc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DefinitionEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/mapping/DefinitionEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/DynamicEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/mapping/DynamicEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/persist/jdbc/mapping/SessionFactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/persist/jdbc/mapping/SessionFactoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoDefinitionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/service/UdoDefinitionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoDefinitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/service/UdoDefinitionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/service/UdoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/varmentano/nocode_plugin/service/UdoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/prairiekit/service/UdoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/varmentano/nocode_plugin/persist/jdbc/UdoServiceJdbcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/prairiekit/persist/jdbc/UdoServiceJdbcTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,44 +48,59 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="prairiekit-jdbc">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="verification" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
                 <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="nocode-plugin-jdbc" type="f1a62948:ProjectNode" />
+                <item name="prairiekit" type="f1a62948:ProjectNode" />
                 <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
@@ -166,8 +193,8 @@
   </component>
   <component name="RunManager" selected="Application.GettingStarted">
     <configuration name="GettingStarted" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.varmentano.nocode_plugin.persist.jdbc.GettingStarted" />
-      <module name="nocode-plugin-jdbc.docs" />
+      <option name="MAIN_CLASS_NAME" value="org.prairiekit.persist.jdbc.GettingStarted" />
+      <module name="prairiekit-jdbc.docs" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.varmentano.nocode_plugin.persist.jdbc.*" />
@@ -198,7 +225,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.varmentano.nocode_plugin.persist.jdbc.UdoServiceJdbcTests&quot;" />
+            <option value="&quot;org.prairiekit.persist.jdbc.UdoServiceJdbcTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -254,18 +281,18 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="nocode-plugin-jdbc [docsClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="prairiekit-jdbc [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="docsClasses" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -280,16 +307,16 @@
       <item itemvalue="Application.GettingStarted" />
       <item itemvalue="Gradle.UdoServiceJdbcTests" />
       <item itemvalue="Gradle.UdoServiceTestsJdbc" />
-      <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
       <item itemvalue="Gradle.UdoServiceTests" />
+      <item itemvalue="Gradle.prairiekit-jdbc [build]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.UdoServiceJdbcTests" />
         <item itemvalue="Application.GettingStarted" />
+        <item itemvalue="Gradle.UdoServiceJdbcTests" />
+        <item itemvalue="Gradle.prairiekit-jdbc [build]" />
         <item itemvalue="Gradle.UdoServiceTestsJdbc" />
         <item itemvalue="Gradle.UdoServiceTests" />
-        <item itemvalue="Gradle.nocode-plugin-jdbc [docsClasses]" />
       </list>
     </recent_temporary>
   </component>
@@ -421,7 +448,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663084282904</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Persist UDO definitions to the database">
+      <created>1663164069700</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1663164069700</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Rename ObjectDefinition to UdoDefinition for consistency">
+      <created>1663164186555</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1663164186555</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,7 +498,9 @@
     <MESSAGE value="make field definition type an enum" />
     <MESSAGE value="Implement date type handling" />
     <MESSAGE value="Clean up udo service interface to handle just returning a custom object repo and deploying the definition." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up udo service interface to handle just returning a custom object repo and deploying the definition." />
+    <MESSAGE value="Persist UDO definitions to the database" />
+    <MESSAGE value="Rename ObjectDefinition to UdoDefinition for consistency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename ObjectDefinition to UdoDefinition for consistency" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

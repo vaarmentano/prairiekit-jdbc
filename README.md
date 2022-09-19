@@ -1,15 +1,12 @@
-# No-Code Plugin
+# Prairiekit JDBC
 
-The No-Code plugin is a developer toolkit to add no-code (or low-code) features to your app. 
+_prairiekit-jdbc_ is a java library for adding headless CMS (Content Management System) or No-code features to your existing application. Specifically, this module offers a service which, once connected to your database, will manage the persistence of both user-defined-object definitions and the user-defined-objects themselves.
 
-Specifically, we define and implement the interfaces you need to manage runtime-defined objects.  These are the objects your code manages but whose structure (schema) is controlled by the user.
-
-## JDBC
-This module offers a service which, once given a data connection, will manage the persistence of both the user-defined object _definitions_ and the user-defined objects themselves.  
+User-defined-objects (or "UDOs" for short) are the objects your code manages but whose structure (schema) is controlled by the user.
 
 ## Demo
 
-[Getting Started](src/docs/java/org/varmentano/nocode_plugin/persist/jdbc/GettingStarted.java)
+Refer to the [GettingStarted](src/docs/java/org/prairiekit/persist/jdbc/GettingStarted.java) guide for a quick walkthrough on using this library to define a new UDO definition, save it to the database, then perform persistent CRUD operations with this dynamically defined object.
 
 ## Build
 

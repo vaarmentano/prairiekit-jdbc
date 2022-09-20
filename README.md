@@ -6,7 +6,7 @@ User-defined-objects (or "UDOs" for short) are the objects your code manages but
 
 ## Demo
 
-Refer to the [GettingStarted](src/docs/java/org/prairiekit/persist/jdbc/GettingStarted.java) guide for a quick walkthrough on using this library to define a new UDO definition, save it to the database, then perform persistent CRUD operations with this dynamically defined object.
+Refer to the [Getting Started](src/docs/java/org/prairiekit/persist/jdbc/GettingStarted.java) guide for a quick walkthrough on using this library to define a new UDO definition, save it to the database, then perform persistent CRUD operations with this dynamically defined object.
 
 ## Build
 

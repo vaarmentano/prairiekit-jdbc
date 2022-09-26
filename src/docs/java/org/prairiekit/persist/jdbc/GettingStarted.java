@@ -1,6 +1,7 @@
 package org.prairiekit.persist.jdbc;
 
 import org.postgresql.ds.PGSimpleDataSource;
+import org.prairiekit.UdoServiceProvider;
 import org.prairiekit.domain.UserDefinedObject;
 import org.prairiekit.domain.definition.FieldDefinition;
 import org.prairiekit.domain.definition.FieldType;
@@ -19,7 +20,7 @@ public class GettingStarted {
     public static void main(String[] args) {
         // Initialize Service
         DataSource myDataSource = createMyDataSource();
-        UdoService udoService = new UdoServiceJdbc(myDataSource);
+        UdoService udoService = UdoServiceProvider.getJdbcService(myDataSource);
 
         // At runtime, define a new type of object
         List<FieldDefinition> fieldDefinitions = Arrays.asList(
